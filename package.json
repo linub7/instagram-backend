@@ -1,0 +1,20 @@
+{
+  "name": "instal-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linub7/instagram-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linub7/instagram-backend/issues"
+  },
+  "homepage": "https://github.com/linub7/instagram-backend#readme"
+}
