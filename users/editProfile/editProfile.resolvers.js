@@ -1,7 +1,8 @@
 import client from '../../client';
 import bcrypt from 'bcrypt';
 import { protectedResolver } from '../users.utils';
-import { createWriteStream } from 'fs';
+// import { createWriteStream } from 'fs';
+import { uploadToCloudinary } from '../../shared/shared.utils';
 
 export default {
   Mutation: {
@@ -21,17 +22,20 @@ export default {
       ) => {
         let avatarUrl = null;
         if (avatar) {
-          const { filename, createReadStream } = await avatar;
+          const file = await uploadToCloudinary(avatar);
+          avatarUrl = file.secure_url;
+          // avatarUrl = await uploadToCloudinary(avatar, loggedInUser.id);
+          // const { filename, createReadStream } = await avatar;
 
-          const customAvatarName = `${
-            loggedInUser.id
-          }-${Date.now()}-${filename}`;
-          const readStream = createReadStream();
-          const writeStream = createWriteStream(
-            process.cwd() + '/uploads/' + customAvatarName
-          );
-          readStream.pipe(writeStream);
-          avatarUrl = `http://localhost:4000/static/${customAvatarName}`;
+          // const customAvatarName = `${
+          //   loggedInUser.id
+          // }-${Date.now()}-${filename}`;
+          // const readStream = createReadStream();
+          // const writeStream = createWriteStream(
+          //   process.cwd() + '/uploads/' + customAvatarName
+          // );
+          // readStream.pipe(writeStream);
+          // avatarUrl = `http://localhost:4000/static/${customAvatarName}`;
         }
         let hashedPassword = null;
         if (newPassword) {

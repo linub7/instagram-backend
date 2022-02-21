@@ -1,4 +1,5 @@
 import client from '../../client';
+import { uploadToCloudinary } from '../../shared/shared.utils';
 import { protectedResolver } from '../../users/users.utils';
 import { processHashtag } from '../photos.utils';
 
@@ -13,9 +14,11 @@ export default {
           hashtagObj = processHashtag(caption);
           console.log(hashtagObj);
         }
+        const stream = await uploadToCloudinary(file);
+        const photoUrl = stream.secure_url;
         return client.photo.create({
           data: {
-            file,
+            file: photoUrl,
             caption,
             user: {
               connect: {
