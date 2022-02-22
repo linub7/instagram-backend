@@ -21,7 +21,10 @@ export default {
             error: 'message not found.',
           };
         }
-        await client.message.update({ where: { id }, data: { read: true } });
+        await client.message.update({
+          where: { id: messageId },
+          data: { read: true },
+        });
         return {
           ok: true,
         };
