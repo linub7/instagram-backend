@@ -23,7 +23,9 @@ export default {
           };
         }
         // issue a token and sent it to the user
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+          expiresIn: '1d',
+        });
 
         return {
           ok: true,
